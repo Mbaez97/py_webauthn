@@ -136,7 +136,11 @@ class WebAuthnMakeCredentialOptions(object):
                 'type': 'public-key',
             }],
             'timeout': self.timeout,
-            'excludeCredentials': [],
+            'excludeCredentials': [{
+                'id': self.user_id,
+                'count': self.timeout,
+                'type' : 'public-key'
+            }],
             # Relying Parties may use AttestationConveyancePreference to specify their
             # preference regarding attestation conveyance during credential generation.
             'attestation': self.attestation,
