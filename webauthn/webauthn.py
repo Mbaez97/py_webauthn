@@ -137,8 +137,12 @@ class WebAuthnMakeCredentialOptions(object):
             }],
             'timeout': self.timeout,
             'excludeCredentials': [{
-                'id': self.user_id,
-                'count': self.timeout,
+                #Este tendria que ser el id de credencial del public key credential
+                # este id se crea en la clase WebAuthnUser, puedo llamar al atributo de alguna forma?.
+                'id': None,
+                #Aca tengo que ver una forma de enviar c=>c.charCodeAt(0)) 
+                #Esto Esto contiene una pista de como el cliente se comunica con el autenticador
+                #Segun la api este parametro es opcional.
                 'type' : 'public-key'
             }],
             # Relying Parties may use AttestationConveyancePreference to specify their
