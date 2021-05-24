@@ -137,6 +137,9 @@ class WebAuthnMakeCredentialOptions(object):
                 'type': 'public-key',
             }],
             'timeout': self.timeout,
+            #Segun la API el excludeCredentialDescriptorList es opcional y esta información la da 
+            #el RP
+            #excludeCredentialsDescriptorList contiene una lista de los credenciales conocidos.
             'excludeCredentials': [{
                 #Este tendria que ser el id de credencial del public key credential
                 # este id se crea en la clase WebAuthnUser, puedo llamar al atributo de alguna forma?.
