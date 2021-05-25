@@ -89,8 +89,8 @@ class WebAuthnMakeCredentialOptions(object):
 
     def __init__(self, challenge, rp_name, rp_id, user_id, username,
                  display_name, icon_url, timeout=60000, attestation='direct',
-                 user_verification=None, excludeCredential):
-        breakpoint()
+                 user_verification=None, excludeCredential=[]):
+        #breakpoint()
         self.challenge = challenge
         self.rp_name = rp_name
         self.rp_id = rp_id
