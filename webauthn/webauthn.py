@@ -89,7 +89,7 @@ class WebAuthnMakeCredentialOptions(object):
 
     def __init__(self, challenge, rp_name, rp_id, user_id, username,
                  display_name, icon_url, timeout=60000, attestation='direct',
-                 user_verification=None, excludeCredential=[]):
+                 user_verification=None, excluded_credentials=None):
         #breakpoint()
         self.challenge = challenge
         self.rp_name = rp_name
@@ -99,8 +99,10 @@ class WebAuthnMakeCredentialOptions(object):
         self.display_name = display_name
         self.icon_url = icon_url
         self.timeout = timeout
-        self.excludeCredential = excludeCredential
-
+        
+        self.excluded_credentials = []
+        if excluded_credentials:
+            self.excluded_credentials = excluded_credentials
         attestation = str(attestation).lower()
         if attestation not in self._attestation_forms:
             raise ValueError('Attestation must be a string and one of ' +
@@ -141,7 +143,7 @@ class WebAuthnMakeCredentialOptions(object):
             #Segun la API el excludeCredentialDescriptorList es opcional y esta información la da 
             #el RP
             #excludeCredentialsDescriptorList contiene una lista de los credenciales conocidos.
-            'excludeCredentials': self.excludeCredential,
+            'excludeCredentials': self.excluded_credentials,
             # Relying Parties may use AttestationConveyancePreference to specify their
             # preference regarding attestation conveyance during credential generation.
             'attestation': self.attestation,
