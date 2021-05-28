@@ -90,7 +90,6 @@ class WebAuthnMakeCredentialOptions(object):
     def __init__(self, challenge, rp_name, rp_id, user_id, username,
                  display_name, icon_url, timeout=60000, attestation='direct',
                  user_verification=None, excluded_credentials=None):
-        #breakpoint()
         self.challenge = challenge
         self.rp_name = rp_name
         self.rp_id = rp_id
@@ -99,7 +98,6 @@ class WebAuthnMakeCredentialOptions(object):
         self.display_name = display_name
         self.icon_url = icon_url
         self.timeout = timeout
-        
         self.excluded_credentials = []
         if excluded_credentials:
             self.excluded_credentials = excluded_credentials
@@ -140,9 +138,9 @@ class WebAuthnMakeCredentialOptions(object):
                 'type': 'public-key',
             }],
             'timeout': self.timeout,
-            #Segun la API el excludeCredentialDescriptorList es opcional y esta información la da 
-            #el RP
-            #excludeCredentialsDescriptorList contiene una lista de los credenciales conocidos.
+            # excludeCredentialsDescriptorList can be a empty list or have the PublicKeyCredentialDescriptor
+            # and this is a dictionary. This dictionary contains the attributes that are specified by a caller when
+            # referring to a public key credential as an input parameter to navigator.credential.create().
             'excludeCredentials': self.excluded_credentials,
             # Relying Parties may use AttestationConveyancePreference to specify their
             # preference regarding attestation conveyance during credential generation.
