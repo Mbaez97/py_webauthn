@@ -30,7 +30,6 @@ class WebAuthnES256Test(unittest.TestCase):
     USER_DISPLAY_NAME = "A Test User"
     USER_ID = b'\x80\xf1\xdc\xec\xb5\x18\xb1\xc8b\x05\x886\xbc\xdfJ\xdf'
     RP_NAME = "Web Authentication"
-    #Inicialmente probamos con la lista vacia
     EXCLUDE_CREDENTIAL = []
     def setUp(self):
         self.options = webauthn.WebAuthnMakeCredentialOptions(
